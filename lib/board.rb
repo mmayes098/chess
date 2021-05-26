@@ -1,3 +1,5 @@
+Dir["./lib/*.rb"].each { |file| require file }
+
 class Board
     attr_accessor :board
 
@@ -26,25 +28,25 @@ class Board
 
     def start_pieces
         (0..7).each do |num|
-            @board[1][num] = " \u{265F} " #white pawns
-            @board[6][num] = " \u{2659} " #black pawns
+            @board[1][num] = Pawn.new("white").display #white pawns
+            @board[6][num] = Pawn.new("black").display #black pawns
         end
-        @board[0][0] = " \u{265C} " #white rooks
-        @board[0][7] = " \u{265C} "
-        @board[7][0] = " \u{2656} " #black rooks
-        @board[7][7] = " \u{2656} "
-        @board[0][1] = " \u{265E} " #white knights
-        @board[0][6] = " \u{265E} "
-        @board[7][1] = " \u{2658} " #black knights
-        @board[7][6] = " \u{2658} "
-        @board[0][2] = " \u{265D} " #white bishops
-        @board[0][5] = " \u{265D} "
-        @board[7][2] = " \u{2657} " #black bishops
-        @board[7][5] = " \u{2657} "
-        @board[0][3] = " \u{265B} " #white queen
-        @board[0][4] = " \u{265A} " #white king
-        @board[7][3] = " \u{2655} " #black queen
-        @board[7][4] = " \u{2654} " #black king
+        @board[0][0] = Rook.new("white").display #white rooks
+        @board[0][7] = Rook.new("white").display
+        @board[7][0] = Rook.new("black").display #black rooks
+        @board[7][7] = Rook.new("black").display
+        @board[0][1] = Knight.new("white").display #white knights
+        @board[0][6] = Knight.new("white").display
+        @board[7][1] = Knight.new("black").display #black knights
+        @board[7][6] = Knight.new("black").display
+        @board[0][2] = Bishop.new("white").display #white bishops
+        @board[0][5] = Bishop.new("white").display
+        @board[7][2] = Bishop.new("black").display #black bishops
+        @board[7][5] = Bishop.new("black").display
+        @board[0][3] = Queen.new("white").display #white queen
+        @board[0][4] = King.new("white").display #white king
+        @board[7][3] = Queen.new("black").display #black queen
+        @board[7][4] = King.new("black").display #black king
         self.print_board
     end
 end

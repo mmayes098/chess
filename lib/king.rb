@@ -1,19 +1,19 @@
 require_relative "board.rb"
 
-class Pawn
+class King
     attr_accessor :display
 
     def initialize(color)
         @color = color
-        @type = "pawn"
+        @type = "king"
         @display = ""
     end
 
     def display
         if @color == "white"
-            return " \u{265F} "
+            return " \u{265A} "
         else
-            return " \u{2659} "
+            return " \u{2654} "
         end
     end
 end
