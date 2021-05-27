@@ -1,7 +1,7 @@
 require_relative "board.rb"
 
 class Pawn
-    attr_accessor :display
+    attr_accessor :display, :type
 
     def initialize(color)
         @color = color

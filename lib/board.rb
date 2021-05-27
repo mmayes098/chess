@@ -50,15 +50,17 @@ class Board
         @board[7][3] = Queen.new("black").display #black queen
         @board[7][4] = King.new("black").display #black king
         self.print_board
-        self.get_space
+        # self.get_space
     end
 
     def get_space
-        puts "Player #{@player}, please select the piece you would like to move (e.g. a1):"
-        space = gets.chomp.to_s
+        # puts "Player #{@player}, please select the piece you would like to move (e.g. a1):"
+        # space = gets.chomp.to_s
+        space = "a2"
         if self.valid_space?(space)
-            translated_space = translate_space(space)
+            translated_space = translate_space(space).to_i
             piece = @board[translated_space[0]][translated_space[1]]
+            return piece
         else
             puts "That is not a valid space!"
             self.get_space
@@ -78,6 +80,6 @@ class Board
         letters = "abcdefgh"
         horizontal = letters.index(space[0].downcase)
         vertical = space[1].to_i - 1
-        return vertical.to_s + horizontal.to_s
+        return horizontal.to_s + vertical.to_s
     end
 end
