@@ -67,12 +67,16 @@ class Board
 
     def valid_space?(space)
         letters = "abcdefgh"
+        return false if space.length > 2
+        return false unless letters.include?(space[0].downcase)
+        return false if space[1].to_i < 1 || space[1].to_i > 8
+
+        true
     end
 
     def translate_space(space)
-        # debugger
         letters = "abcdefgh"
-        horizontal = letters.index(space[0])
+        horizontal = letters.index(space[0].downcase)
         vertical = space[1].to_i - 1
         return vertical.to_s + horizontal.to_s
     end
