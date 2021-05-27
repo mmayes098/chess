@@ -1,10 +1,12 @@
 Dir["./lib/*.rb"].each { |file| require file }
+require 'byebug'
 
 class Board
     attr_accessor :board
 
     def initialize
         @board = make_board
+        @player = 1
     end
 
     def make_board
@@ -48,5 +50,30 @@ class Board
         @board[7][3] = Queen.new("black").display #black queen
         @board[7][4] = King.new("black").display #black king
         self.print_board
+        self.get_space
+    end
+
+    def get_space
+        puts "Player #{@player}, please select the piece you would like to move (e.g. a1):"
+        space = gets.chomp.to_s
+        if self.valid_space?(space)
+            translated_space = translate_space(space)
+            piece = @board[translated_space[0]][translated_space[1]]
+        else
+            puts "That is not a valid space!"
+            self.get_space
+        end
+    end
+
+    def valid_space?(space)
+        letters = "abcdefgh"
+    end
+
+    def translate_space(space)
+        # debugger
+        letters = "abcdefgh"
+        horizontal = letters.index(space[0])
+        vertical = space[1].to_i - 1
+        return vertical.to_s + horizontal.to_s
     end
 end
