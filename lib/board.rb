@@ -18,10 +18,10 @@ class Board
            a  b  c  d  e  f  g  h
         8 #{@board[7][0].display}#{@board[7][1].display}#{@board[7][2].display}#{@board[7][3].display}#{@board[7][4].display}#{@board[7][5].display}#{@board[7][6].display}#{@board[7][7].display} 8
         7 #{@board[6][0].display}#{@board[6][1].display}#{@board[6][2].display}#{@board[6][3].display}#{@board[6][4].display}#{@board[6][5].display}#{@board[6][6].display}#{@board[6][7].display} 7
-        6 #{@board[5][0]}#{@board[5][1]}#{@board[5][2]}#{@board[5][3]}#{@board[5][4]}#{@board[5][5]}#{@board[5][6]}#{@board[5][7]} 6
-        5 #{@board[4][0]}#{@board[4][1]}#{@board[4][2]}#{@board[4][3]}#{@board[4][4]}#{@board[4][5]}#{@board[4][6]}#{@board[4][7]} 5
-        4 #{@board[3][0]}#{@board[3][1]}#{@board[3][2]}#{@board[3][3]}#{@board[3][4]}#{@board[3][5]}#{@board[3][6]}#{@board[3][7]} 4
-        3 #{@board[2][0]}#{@board[2][1]}#{@board[2][2]}#{@board[2][3]}#{@board[2][4]}#{@board[2][5]}#{@board[2][6]}#{@board[2][7]} 3
+        6 #{@board[5][0].display}#{@board[5][1].display}#{@board[5][2].display}#{@board[5][3].display}#{@board[5][4].display}#{@board[5][5].display}#{@board[5][6].display}#{@board[5][7].display} 6
+        5 #{@board[4][0].display}#{@board[4][1].display}#{@board[4][2].display}#{@board[4][3].display}#{@board[4][4].display}#{@board[4][5].display}#{@board[4][6].display}#{@board[4][7].display} 5
+        4 #{@board[3][0].display}#{@board[3][1].display}#{@board[3][2].display}#{@board[3][3].display}#{@board[3][4].display}#{@board[3][5].display}#{@board[3][6].display}#{@board[3][7].display} 4
+        3 #{@board[2][0].display}#{@board[2][1].display}#{@board[2][2].display}#{@board[2][3].display}#{@board[2][4].display}#{@board[2][5].display}#{@board[2][6].display}#{@board[2][7].display} 3
         2 #{@board[1][0].display}#{@board[1][1].display}#{@board[1][2].display}#{@board[1][3].display}#{@board[1][4].display}#{@board[1][5].display}#{@board[1][6].display}#{@board[1][7].display} 2
         1 #{@board[0][0].display}#{@board[0][1].display}#{@board[0][2].display}#{@board[0][3].display}#{@board[0][4].display}#{@board[0][5].display}#{@board[0][6].display}#{@board[0][7].display} 1
            a  b  c  d  e  f  g  h
@@ -29,6 +29,11 @@ class Board
     end
 
     def start_pieces
+        (2..5).each do |n1|
+            (0..7).each do |n2|
+                @board[n1][n2] = Space.new
+            end
+        end
         (0..7).each do |num|
             @board[1][num] = Pawn.new("white") #white pawns
             @board[6][num] = Pawn.new("black") #black pawns
@@ -54,16 +59,16 @@ class Board
     end
 
     def get_space
-        # puts "Player #{@player}, please select the piece you would like to move (e.g. a1):"
-        # space = gets.chomp.to_s
-        space = "a2"
+        puts "Player #{@player}, please select the piece you would like to move (e.g. a1):"
+        space = gets.chomp.to_s
         if self.valid_space?(space)
             translated_space = translate_space(space).to_i
-            piece = @board[translated_space[0]][translated_space[1]]
+            piece = @board[translated_space[0]][translated_space[1]].display
             return piece
         else
             puts "That is not a valid space!"
-            self.get_space
+            return false
+            # self.get_space
         end
     end
 

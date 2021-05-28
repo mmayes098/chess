@@ -8,6 +8,11 @@ describe Board do
             board.start_pieces
             expect(board.get_space).to eq(" \u{265F} ")
         end
+
+        it "returns false if the space is not valid" do
+            board.start_pieces
+            expect(board.get_space).to eq(false)
+        end
     end
 
     describe "#translate_space" do
