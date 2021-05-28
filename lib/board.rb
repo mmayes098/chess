@@ -55,7 +55,7 @@ class Board
         @board[7][3] = Queen.new("black") #black queen
         @board[7][4] = King.new("black") #black king
         self.print_board
-        # self.get_space
+        self.get_space
     end
 
     def get_space
@@ -67,8 +67,7 @@ class Board
             return piece
         else
             puts "That is not a valid space!"
-            return false
-            # self.get_space
+            self.get_space
         end
     end
 
