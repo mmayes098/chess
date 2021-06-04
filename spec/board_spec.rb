@@ -3,15 +3,11 @@ require './lib/board'
 describe Board do
     subject(:board) { described_class.new }
 
+    # These get_space tests are commented out because I haven't figured out how to simulate input in rspec yet
     # describe "#get_space" do
     #     it "correctly returns the piece located at the space" do
     #         board.start_pieces
     #         expect(board.get_space).to eq(" \u{265F} ")
-    #     end
-
-    #     it "returns false if the space is not valid" do
-    #         board.start_pieces
-    #         expect(board.get_space).to eq(false)
     #     end
     # end
 

@@ -1,5 +1,5 @@
 Dir["./lib/*.rb"].each { |file| require file }
-require 'byebug'
+# require 'byebug'
 
 class Board
     attr_accessor :board
@@ -42,10 +42,10 @@ class Board
         @board[0][7] = Rook.new("white")
         @board[7][0] = Rook.new("black") #black rooks
         @board[7][7] = Rook.new("black")
-        @board[0][1] = Knight.new("white") #white knights
-        @board[0][6] = Knight.new("white")
-        @board[7][1] = Knight.new("black") #black knights
-        @board[7][6] = Knight.new("black")
+        @board[0][1] = Knight.new("white", [0, 1]) #white knights
+        @board[0][6] = Knight.new("white", [0, 6])
+        @board[7][1] = Knight.new("black", [7, 1]) #black knights
+        @board[7][6] = Knight.new("black", [7, 6])
         @board[0][2] = Bishop.new("white") #white bishops
         @board[0][5] = Bishop.new("white")
         @board[7][2] = Bishop.new("black") #black bishops
@@ -54,8 +54,6 @@ class Board
         @board[0][4] = King.new("white") #white king
         @board[7][3] = Queen.new("black") #black queen
         @board[7][4] = King.new("black") #black king
-        self.print_board
-        self.get_space
     end
 
     def get_space
@@ -76,7 +74,6 @@ class Board
         return false if space.length > 2
         return false unless letters.include?(space[0].downcase)
         return false if space[1].to_i < 1 || space[1].to_i > 8
-
         true
     end
 
