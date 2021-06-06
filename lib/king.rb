@@ -1,7 +1,7 @@
 require_relative "board.rb"
 require_relative "space.rb"
 
-class King
+class King < Space
     attr_accessor :display
 
     def initialize(color)
