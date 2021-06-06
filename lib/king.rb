@@ -1,4 +1,5 @@
 require_relative "board.rb"
+require_relative "space.rb"
 
 class King
     attr_accessor :display
@@ -7,6 +8,7 @@ class King
         @color = color
         @type = "king"
         @display = ""
+        @occupied = true
     end
 
     def display

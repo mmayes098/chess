@@ -1,6 +1,7 @@
 require_relative "board.rb"
+require_relative "space.rb"
 
-class Knight
+class Knight < Space
     attr_reader :color
     attr_accessor :display, :position
 
@@ -8,6 +9,7 @@ class Knight
         @position = position
         @color = color
         @type = "knight"
+        @occupied = true
     end
 
     MOVES = [[1, 2], [2, 1], [-1, -2], [-2, -1], [1, -2], [-1, 2], [2, -1], [-2, 1]]
@@ -25,9 +27,5 @@ class Knight
             move.each_with_index.map { |m, i| m + @position[i] unless (m + @position[i]).negative? || (m + @position[i]) > 7 }
         end
         next_moves.delete_if { |move| move.include?(nil) }
-        # next_moves.map! do |move|
-        #     move.each_with_index.map { |m, i| m + @position[i] }
-        # end
-        # return next_moves
     end
 end

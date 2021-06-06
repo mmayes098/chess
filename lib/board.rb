@@ -90,12 +90,18 @@ class Board
         letters = "abcdefgh"
         spaces = []
         moves.each do |move|
-            vertical = move[0] + 1
-            horizontal = letters[move[1]]
-            space = horizontal + vertical.to_s
-            spaces << space
+            unless self.occupied?(move)
+                vertical = move[0] + 1
+                horizontal = letters[move[1]]
+                space = horizontal + vertical.to_s
+                spaces << space
+            end
         end
 
         spaces.sort.join(", ")
+    end
+
+    def occupied?(space)
+        @board[space[0]][space[1]].occupied
     end
 end

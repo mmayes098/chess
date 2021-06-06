@@ -1,12 +1,14 @@
 require_relative "board.rb"
+require_relative "space.rb"
 
-class Rook
+class Rook < Space
     attr_accessor :display
 
     def initialize(color)
         @color = color
         @type = "rook"
         @display = ""
+        @occupied = true
     end
 
     def display

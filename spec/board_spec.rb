@@ -58,7 +58,26 @@ describe Board do
     describe "#translate_moves" do
         it "returns correct spaces given Knight at g1 input" do
             next_moves = [[2, 7], [1, 4], [2, 5]]
-            expect(board.translate_moves(next_moves)).to eq("e2, f3, h3")
+            expect(board.translate_moves(next_moves)).to eq("f3, h3")
+        end
+    end
+
+    describe "#occupied?" do
+        context "returns true for occupied spaces" do
+            it "works for starting white pieces" do
+                expect(board.occupied?([0, 0])).to eq(true)
+                expect(board.occupied?([1, 7])).to eq(true)
+            end
+
+            it "works for starting black pieces" do
+                expect(board.occupied?([7, 0])).to eq(true)
+                expect(board.occupied?([6, 5])).to eq(true)
+            end
+        end
+
+        it "returns false for starting empty spaces" do
+            expect(board.occupied?([4, 2])).to eq(false)
+            expect(board.occupied?([5, 6])).to eq(false)
         end
     end
 end
