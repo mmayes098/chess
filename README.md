@@ -10,4 +10,4 @@ I have also created tests to help test my methods. Thus far I have tests for che
 
 6/5: Added prompt to ask which of next moves player would like to choose.
 
-6/6: Translated next moves prompt to proper letter/number combinations, fixed bug in Board.translate_space method.
+6/6: Translated next moves prompt to proper letter/number combinations, fixed bug in Board.translate_space method, finished logic to calculate and display next moves for Knight pieces, again only taking into account going off the board, not if any of the next spaces are occupied, and added appropriate spec test.

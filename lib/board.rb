@@ -71,18 +71,6 @@ class Board
         end
     end
 
-    def test_space  #debugging space positions
-        puts "Player #{@player}, please select the piece you would like to move (e.g. a1):"
-        space = gets.chomp.to_s
-        if self.valid_space?(space)
-            translated_space = translate_space(space)
-            puts "That is a: " + @board[translated_space[0].to_i][translated_space[1].to_i].display
-        else
-            puts "That is not a valid space!"
-            self.get_space
-        end
-    end
-
     def valid_space?(space)
         letters = "abcdefgh"
         return false if space.length > 2
@@ -98,11 +86,16 @@ class Board
         return vertical.to_s + horizontal.to_s
     end
 
-    # def translate_moves(moves)
-    #     letters = "abcdefgh"
-    #     spaces = []
-    #     moves.each do |move|
+    def translate_moves(moves)
+        letters = "abcdefgh"
+        spaces = []
+        moves.each do |move|
+            vertical = move[0] + 1
+            horizontal = letters[move[1]]
+            space = horizontal + vertical.to_s
+            spaces << space
+        end
 
-    #     end
-    # end
+        spaces.sort.join(", ")
+    end
 end

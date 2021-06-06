@@ -54,4 +54,11 @@ describe Board do
             expect(board.valid_space?("A2")).to eq(true)
         end
     end
+
+    describe "#translate_moves" do
+        it "returns correct spaces given Knight at g1 input" do
+            next_moves = [[2, 7], [1, 4], [2, 5]]
+            expect(board.translate_moves(next_moves)).to eq("e2, f3, h3")
+        end
+    end
 end
