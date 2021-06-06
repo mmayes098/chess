@@ -1,6 +1,8 @@
+require_relative "board.rb"
 require_relative "space.rb"
 
-class Pawn
+class Pawn < Space
+    attr_accessor :display, :type
 
     def initialize(color)
         @color = color

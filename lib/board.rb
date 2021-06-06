@@ -39,10 +39,10 @@ class Board
             @board[1][num] = Pawn.new("white") #white pawns
             @board[6][num] = Pawn.new("black") #black pawns
         end
-        @board[0][0] = Rook.new("white", [0, 0]) #white rooks
-        @board[0][7] = Rook.new("white", [0, 7])
-        @board[7][0] = Rook.new("black", [7, 0]) #black rooks
-        @board[7][7] = Rook.new("black", [7, 7])
+        @board[0][0] = Rook.new("white") #white rooks
+        @board[0][7] = Rook.new("white")
+        @board[7][0] = Rook.new("black") #black rooks
+        @board[7][7] = Rook.new("black")
         @board[0][1] = Knight.new("white", [0, 1]) #white knights
         @board[0][6] = Knight.new("white", [0, 6])
         @board[7][1] = Knight.new("black", [7, 1]) #black knights

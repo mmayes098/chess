@@ -1,7 +1,9 @@
+require_relative "board.rb"
 require_relative "space.rb"
 
-class Knight
-    attr_accessor :position
+class Knight < Space
+    attr_reader :color
+    attr_accessor :display, :position
 
     def initialize(color, position)
         @position = position
