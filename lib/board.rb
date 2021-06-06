@@ -31,7 +31,7 @@ class Board
     def start_pieces
         (2..5).each do |n1|
             (0..7).each do |n2|
-                @board[n1][n2] = Space.new
+                @board[n1][n2] = Space.new #blank spaces in middle
             end
         end
         (0..7).each do |num|
@@ -62,7 +62,8 @@ class Board
         if self.valid_space?(space)
             translated_space = translate_space(space).to_i
             piece = @board[translated_space[0]][translated_space[1]].display
-            return piece
+            next_moves = self.translate_moves(@board[translated_space[0]][translated_space[1]].next_moves)
+            puts "Where would you like to move your #{piece} to? The valid moves are: #{next_moves}"
         else
             puts "That is not a valid space!"
             self.get_space
@@ -82,5 +83,13 @@ class Board
         horizontal = letters.index(space[0].downcase)
         vertical = space[1].to_i - 1
         return horizontal.to_s + vertical.to_s
+    end
+
+    def translate_moves(moves)
+        letters = "abcdefgh"
+        spaces = []
+        moves.each do |move|
+
+        end
     end
 end
