@@ -15,17 +15,17 @@ describe Board do
         it "provides proper indices given a2 input" do
             input = "a2"
             translated_input = board.translate_space(input)
-            expect(translated_input).to eq("01")
+            expect(translated_input).to eq("10")
         end
 
         it "provides proper indices given f5 input" do
             input = "f5"
             translated_input = board.translate_space(input)
-            expect(translated_input).to eq("54")
+            expect(translated_input).to eq("45")
         end
 
         it "works with capital letters" do
-            expect(board.translate_space("A2")).to eq("01")
+            expect(board.translate_space("A2")).to eq("10")
         end
     end
 

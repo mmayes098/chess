@@ -1,11 +1,12 @@
 Dir["./lib/*.rb"].each { |file| require file }
-# require 'byebug'
+require 'byebug'
 
 class Board
     attr_accessor :board
 
     def initialize
         @board = make_board
+        self.start_pieces
         @player = 1
     end
 
@@ -60,10 +61,22 @@ class Board
         puts "Player #{@player}, please select the piece you would like to move (e.g. a1):"
         space = gets.chomp.to_s
         if self.valid_space?(space)
-            translated_space = translate_space(space).to_i
-            piece = @board[translated_space[0]][translated_space[1]].display
-            next_moves = self.translate_moves(@board[translated_space[0]][translated_space[1]].next_moves)
+            translated_space = translate_space(space)
+            piece = @board[translated_space[0].to_i][translated_space[1].to_i].display
+            next_moves = self.translate_moves(@board[translated_space[0].to_i][translated_space[1].to_i].next_moves)
             puts "Where would you like to move your #{piece} to? The valid moves are: #{next_moves}"
+        else
+            puts "That is not a valid space!"
+            self.get_space
+        end
+    end
+
+    def test_space  #debugging space positions
+        puts "Player #{@player}, please select the piece you would like to move (e.g. a1):"
+        space = gets.chomp.to_s
+        if self.valid_space?(space)
+            translated_space = translate_space(space)
+            puts "That is a: " + @board[translated_space[0].to_i][translated_space[1].to_i].display
         else
             puts "That is not a valid space!"
             self.get_space
@@ -82,14 +95,14 @@ class Board
         letters = "abcdefgh"
         horizontal = letters.index(space[0].downcase)
         vertical = space[1].to_i - 1
-        return horizontal.to_s + vertical.to_s
+        return vertical.to_s + horizontal.to_s
     end
 
-    def translate_moves(moves)
-        letters = "abcdefgh"
-        spaces = []
-        moves.each do |move|
+    # def translate_moves(moves)
+    #     letters = "abcdefgh"
+    #     spaces = []
+    #     moves.each do |move|
 
-        end
-    end
+    #     end
+    # end
 end
