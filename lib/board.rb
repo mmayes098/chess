@@ -89,16 +89,20 @@ class Board
     def translate_moves(moves)
         letters = "abcdefgh"
         spaces = []
-        moves.each do |move|
-            unless self.occupied?(move)
-                vertical = move[0] + 1
-                horizontal = letters[move[1]]
-                space = horizontal + vertical.to_s
-                spaces << space
+        unless moves == nil
+            moves.each do |move|
+                unless self.occupied?(move)
+                    vertical = move[0] + 1
+                    horizontal = letters[move[1]]
+                    space = horizontal + vertical.to_s
+                    spaces << space
+                end
             end
+
+            spaces.sort.join(", ")
         end
 
-        spaces.sort.join(", ")
+        return "There are no valid moves for that piece!"
     end
 
     def occupied?(space)
