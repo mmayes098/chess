@@ -1,4 +1,4 @@
-Dir["./lib/*.rb"].each { |file| require file }
+Dir["./lib/*.rb"].each { |file| require file unless file == "./lib/script.rb" }
 require 'byebug'
 
 class Board
@@ -99,7 +99,7 @@ class Board
                 end
             end
 
-            spaces.sort.join(", ")
+            return spaces.sort.join(", ")
         end
 
         return "There are no valid moves for that piece!"

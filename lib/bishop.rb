@@ -1,5 +1,4 @@
-require_relative "board.rb"
-require_relative "space.rb"
+require_relative "space"
 
 class Bishop < Space
     attr_accessor :display
