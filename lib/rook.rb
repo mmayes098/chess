@@ -1,13 +1,12 @@
 require_relative "space"
-require 'byebug'
 
 class Rook < Space
-    attr_accessor :display
+    attr_accessor :position
 
-    def initialize(color)
+    def initialize(color, position)
         @color = color
         @type = "rook"
-        @display = ""
+        @position = position
         @occupied = true
     end
 
