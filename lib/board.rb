@@ -36,8 +36,8 @@ class Board
             end
         end
         (0..7).each do |num|
-            @board[1][num] = Pawn.new("white") #white pawns
-            @board[6][num] = Pawn.new("black") #black pawns
+            @board[1][num] = Pawn.new("white", [1, num]) #white pawns
+            @board[6][num] = Pawn.new("black", [6, num]) #black pawns
         end
         @board[0][0] = Rook.new("white", [0, 0]) #white rooks
         @board[0][7] = Rook.new("white", [0, 7])
@@ -52,9 +52,9 @@ class Board
         @board[7][2] = Bishop.new("black", [7, 2]) #black bishops
         @board[7][5] = Bishop.new("black", [7, 5])
         @board[0][3] = Queen.new("white") #white queen
-        @board[0][4] = King.new("white") #white king
+        @board[0][4] = King.new("white", [0, 4]) #white king
         @board[7][3] = Queen.new("black") #black queen
-        @board[7][4] = King.new("black") #black king
+        @board[7][4] = King.new("black", [7, 4]) #black king
     end
 
     def get_space
@@ -89,20 +89,16 @@ class Board
     def translate_moves(moves)
         letters = "abcdefgh"
         spaces = []
-        unless moves == nil
-            moves.each do |move|
-                unless self.occupied?(move)
-                    vertical = move[0] + 1
-                    horizontal = letters[move[1]]
-                    space = horizontal + vertical.to_s
-                    spaces << space
-                end
+        moves.each do |move|
+            unless self.occupied?(move)
+                vertical = move[0] + 1
+                horizontal = letters[move[1]]
+                space = horizontal + vertical.to_s
+                spaces << space
             end
-
-            return spaces.sort.join(", ")
         end
 
-        return "There are no valid moves for that piece!"
+        spaces.sort.join(", ")
     end
 
     def occupied?(space)

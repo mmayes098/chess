@@ -1,14 +1,16 @@
 require_relative "space"
 
 class King < Space
-    attr_accessor :display
+    attr_accessor :position
 
-    def initialize(color)
+    def initialize(color, position)
         @color = color
         @type = "king"
-        @display = ""
+        @position = position
         @occupied = true
     end
+
+    MOVES = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]]
 
     def display
         if @color == "white"
@@ -16,5 +18,12 @@ class King < Space
         else
             return " \u{2654} "
         end
+    end
+
+    def next_moves
+        next_moves = MOVES.map do |move|
+            move.each_with_index.map { |m, i| m + @position[i] unless (m + @position[i]).negative? || (m + @position[i]) > 7 }
+        end
+        next_moves.delete_if { |move| move.include?(nil) }
     end
 end
