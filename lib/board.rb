@@ -51,9 +51,9 @@ class Board
         @board[0][5] = Bishop.new("white", [0, 5])
         @board[7][2] = Bishop.new("black", [7, 2]) #black bishops
         @board[7][5] = Bishop.new("black", [7, 5])
-        @board[0][3] = Queen.new("white") #white queen
+        @board[0][3] = Queen.new("white", [0, 3]) #white queen
         @board[0][4] = King.new("white", [0, 4]) #white king
-        @board[7][3] = Queen.new("black") #black queen
+        @board[7][3] = Queen.new("black", [7, 3]) #black queen
         @board[7][4] = King.new("black", [7, 4]) #black king
     end
 
