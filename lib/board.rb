@@ -63,8 +63,10 @@ class Board
         if self.valid_space?(space)
             translated_space = translate_space(space)
             piece = @board[translated_space[0].to_i][translated_space[1].to_i].display
-            next_moves = self.translate_moves(@board[translated_space[0].to_i][translated_space[1].to_i].next_moves)
-            puts "Where would you like to move your #{piece} to? The valid moves are: #{next_moves}"
+            next_moves = @board[translated_space[0].to_i][translated_space[1].to_i].next_moves
+            # valid_moves = self.valid_moves(next_moves)
+            translated_moves = self.translate_moves(next_moves)
+            puts "Where would you like to move your #{piece} to? The valid moves are: #{translated_moves}"
         else
             puts "That is not a valid space!"
             self.get_space
@@ -84,6 +86,10 @@ class Board
         horizontal = letters.index(space[0].downcase)
         vertical = space[1].to_i - 1
         return vertical.to_s + horizontal.to_s
+    end
+
+    def valid_moves(moves)
+
     end
 
     def translate_moves(moves)
