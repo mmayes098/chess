@@ -63,8 +63,8 @@ class Board
         if self.valid_space?(space)
             translated_space = translate_space(space)
             piece = @board[translated_space[0].to_i][translated_space[1].to_i].display
-            next_moves = @board[translated_space[0].to_i][translated_space[1].to_i].next_moves
-            # valid_moves = self.valid_moves(next_moves)
+            all_moves = @board[translated_space[0].to_i][translated_space[1].to_i].next_moves
+            # valid_moves = self.valid_moves(all_moves)
             translated_moves = self.translate_moves(next_moves)
             puts "Where would you like to move your #{piece} to? The valid moves are: #{translated_moves}"
         else
@@ -88,7 +88,10 @@ class Board
         return vertical.to_s + horizontal.to_s
     end
 
-    def valid_moves(moves)
+    def valid_move?(moves)
+        moves.each do |move|
+            return false if self.occupied?(move)
+        end
 
     end
 
@@ -96,12 +99,10 @@ class Board
         letters = "abcdefgh"
         spaces = []
         moves.each do |move|
-            unless self.occupied?(move)
-                vertical = move[0] + 1
-                horizontal = letters[move[1]]
-                space = horizontal + vertical.to_s
-                spaces << space
-            end
+            vertical = move[0] + 1
+            horizontal = letters[move[1]]
+            space = horizontal + vertical.to_s
+            spaces << space
         end
 
         spaces.sort.join(", ")

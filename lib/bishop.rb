@@ -1,6 +1,6 @@
 require_relative "space"
 
-class Bishop < Space
+class Bishop
     attr_accessor :position
 
     def initialize(color, position)
@@ -25,5 +25,9 @@ class Bishop < Space
             move.each_with_index.map { |m, i| m + @position[i] unless (m + @position[i]).negative? || (m + @position[i]) > 7 }
         end
         next_moves.delete_if { |move| move.include?(nil) }
+    end
+
+    def valid_move?
+
     end
 end
