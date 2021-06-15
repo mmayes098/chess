@@ -1,8 +1,10 @@
+require_relative "board"
+
 class Space
-    attr_accessor :display, :status, :occupied
+    attr_accessor :display, :type, :occupied
 
     def initialize
-        @status = "blank"
+        @type = "blank"
         @display = " - "
         @occupied = false
     end

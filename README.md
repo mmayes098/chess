@@ -14,4 +14,4 @@ I have also created tests to help test my methods. Thus far I have tests for che
 
 6/7: Fixed pawn logic to work correctly for black pieces, testing if validating move logic can be included in piece classes
 
-6/15: Fixed move logic for occupied spaces
+6/15: Fixed move logic for occupied spaces, working on how to access board from inside separate piece classes (not sure if can be done); may need to make trees for each piece
