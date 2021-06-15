@@ -64,8 +64,8 @@ class Board
             translated_space = translate_space(space)
             piece = @board[translated_space[0].to_i][translated_space[1].to_i].display
             all_moves = @board[translated_space[0].to_i][translated_space[1].to_i].next_moves
-            # valid_moves = self.valid_moves(all_moves)
-            translated_moves = self.translate_moves(next_moves)
+            valid_moves = self.validate_moves(all_moves)
+            translated_moves = self.translate_moves(valid_moves)
             puts "Where would you like to move your #{piece} to? The valid moves are: #{translated_moves}"
         else
             puts "That is not a valid space!"
@@ -88,12 +88,17 @@ class Board
         return vertical.to_s + horizontal.to_s
     end
 
-    def valid_move?(moves)
-        moves.each do |move|
-            return false if self.occupied?(move)
-        end
-
+    def validate_moves(moves)
+        new_moves = moves.delete_if { |move| self.occupied?(move) }
+    
+        new_moves
     end
+
+    # def valid_move?(moves)
+    #     moves.each do |move|
+    #         return false if self.occupied?(move)
+    #     end
+    # end
 
     def translate_moves(moves)
         letters = "abcdefgh"

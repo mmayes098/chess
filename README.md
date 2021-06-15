@@ -13,3 +13,5 @@ I have also created tests to help test my methods. Thus far I have tests for che
 6/6: Translated next moves prompt to proper letter/number combinations, fixed bug in Board.translate_space method, finished logic to calculate and display next moves for Knight pieces, again only taking into account going off the board, not if any of the next spaces are occupied, and added appropriate spec test. Added logic and specs to remove occupied spaces from valid moves list. Added logic for all pieces, only taking into account going off the board or if a space is occupied, not whether or not they are jumping over other pieces.
 
 6/7: Fixed pawn logic to work correctly for black pieces, testing if validating move logic can be included in piece classes
+
+6/15: Fixed move logic for occupied spaces
