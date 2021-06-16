@@ -2,6 +2,7 @@
 require_relative "board"
 
 class Bishop
+    attr_reader :type
     attr_accessor :position, :occupied
 
     def initialize(color, position)
@@ -26,10 +27,5 @@ class Bishop
             move.each_with_index.map { |m, i| m + @position[i] unless (m + @position[i]).negative? || (m + @position[i]) > 7 }
         end
         next_moves.delete_if { |move| move.include?(nil) }
-    end
-
-    def validate(moves)
-        moves.each do |move|
-            
     end
 end

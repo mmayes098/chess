@@ -63,9 +63,10 @@ class Board
         if self.valid_space?(space)
             translated_space = translate_space(space)
             piece = @board[translated_space[0].to_i][translated_space[1].to_i].display
+            type = @board[translated_space[0].to_i][translated_space[1].to_i].type
             all_moves = @board[translated_space[0].to_i][translated_space[1].to_i].next_moves
-            validated_moves = @board[translated_space[0].to_i][translated_space[1].to_i].validate(@board[translated_space[0].to_i][translated_space[1].to_i].next_moves)
-            valid_moves = self.validate_moves(all_moves)
+            valid_moves = self.validate_moves(all_moves, type)
+            puts "#{valid_moves} are all the valid moves"
             translated_moves = self.translate_moves(valid_moves)
             puts "Where would you like to move your #{piece} to? The valid moves are: #{translated_moves}"
         else
@@ -89,10 +90,26 @@ class Board
         return vertical.to_s + horizontal.to_s
     end
 
-    def validate_moves(moves)
-        new_moves = moves.delete_if { |move| self.occupied?(move) }
-    
-        new_moves
+    def validate_moves(moves, type)
+        if type == "bishop"
+            final_moves = validate_bishop(moves)
+        elsif type == "king"
+            final_moves = validate_king(moves)
+        elsif type == "knight"
+            final_moves = validate_knight(moves)
+        elsif type == "pawn"
+            final_moves = validate_pawn(moves)
+        elsif type == "queen"
+            final_moves = validate_queen(moves)
+        elsif type == "rook"
+            final_moves = validate_rook(moves)
+        end
+
+        final_moves
+    end
+
+    def validate_knight(moves)
+        moves.delete_if { |move| self.occupied?(move) }
     end
 
     # def valid_move?(moves)

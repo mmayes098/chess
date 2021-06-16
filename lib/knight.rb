@@ -1,8 +1,8 @@
 require_relative "space"
 
-class Knight < Space
-    attr_reader :color
-    attr_accessor :display, :position
+class Knight
+    attr_reader :type
+    attr_accessor :display, :position, :occupied
 
     def initialize(color, position)
         @position = position

@@ -1,7 +1,8 @@
 require_relative "space"
 
-class King < Space
-    attr_accessor :position
+class King
+    attr_reader :type
+    attr_accessor :position, :occupied
 
     def initialize(color, position)
         @color = color
