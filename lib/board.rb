@@ -164,12 +164,6 @@ class Board
         final_moves
     end
 
-    # def valid_move?(moves)
-    #     moves.each do |move|
-    #         return false if self.occupied?(move)
-    #     end
-    # end
-
     def translate_moves(moves)
         letters = "abcdefgh"
         spaces = []
