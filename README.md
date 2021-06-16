@@ -16,4 +16,4 @@ I have also created tests to help test my methods. Thus far I have tests for che
 
 6/15: Fixed move logic for occupied spaces, working on how to access board from inside separate piece classes (not sure if can be done); may need to make trees for each piece
 
-6/16: Reworking move validation logic to take into account legal/illegal moves (not skipping over pieces, etc). Finished knight, king, pawn validation logic.
+6/16: Reworking move validation logic to take into account legal/illegal moves (not skipping over pieces, etc). Finished knight, king, pawn, rook validation logic.

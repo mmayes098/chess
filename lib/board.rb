@@ -64,15 +64,20 @@ class Board
             translated_space = translate_space(space)
             piece = @board[translated_space[0].to_i][translated_space[1].to_i].display
             type = @board[translated_space[0].to_i][translated_space[1].to_i].type
-            all_moves = @board[translated_space[0].to_i][translated_space[1].to_i].next_moves
-            valid_moves = self.validate_moves(all_moves, type)
-            puts "#{valid_moves} are all the valid moves"
-            if valid_moves == []
-                puts "There are no valid moves for your #{piece}!"
+            if type == "blank"
+                puts "That space is not occupied!"
                 self.get_space
             else
-                translated_moves = self.translate_moves(valid_moves)
-                puts "Where would you like to move your #{piece} to? The valid moves are: #{translated_moves}"
+                all_moves = @board[translated_space[0].to_i][translated_space[1].to_i].next_moves
+                valid_moves = self.validate_moves(all_moves, type, translated_space)
+                puts "#{valid_moves} are all the valid moves"
+                if valid_moves == []
+                    puts "There are no valid moves for your #{piece}!"
+                    self.get_space
+                else
+                    translated_moves = self.translate_moves(valid_moves)
+                    puts "Where would you like to move your #{piece} to? The valid moves are: #{translated_moves}"
+                end
             end
         else
             puts "That is not a valid space!"
@@ -95,7 +100,7 @@ class Board
         return vertical.to_s + horizontal.to_s
     end
 
-    def validate_moves(moves, type)
+    def validate_moves(moves, type, position)
         if type == "bishop"
             final_moves = validate_bishop(moves)
         elsif type == "king"
@@ -107,7 +112,7 @@ class Board
         elsif type == "queen"
             final_moves = validate_queen(moves)
         elsif type == "rook"
-            final_moves = validate_rook(moves)
+            final_moves = validate_rook(moves, position)
         end
 
         final_moves
@@ -128,17 +133,36 @@ class Board
         final_moves
     end
 
-    # def validate_rook(moves)   This logic doesn't work because it removes all moves valid or not.
-    #     final_moves = []
-    #     moves.each do |move|
-    #         if self.occupied?(move)
-    #             final_moves << move
-    #             moves.delete_if { |move1| move1[0] == move[0] }
-    #         end
-    #     end
+    def validate_rook(moves, position)
+        vertical = []
+        horizontal = []
+        final_moves = []
+        moves.each do |move|
+            if move[0] == position[0].to_i
+                horizontal << move
+            elsif move[1] == position[1].to_i
+                vertical << move
+            end
+        end
 
-    #     final_moves.delete_if { |move| self.occupied?(move) }
-    # end
+        vertical.each_with_index do |move, i|
+            unless self.occupied?(move)
+                final_moves << move
+            else
+                break
+            end
+        end
+
+        horizontal.each_with_index do |move, i|
+            unless self.occupied?(move)
+                final_moves << move
+            else
+                break
+            end
+        end
+
+        final_moves
+    end
 
     # def valid_move?(moves)
     #     moves.each do |move|
