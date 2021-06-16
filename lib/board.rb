@@ -67,8 +67,13 @@ class Board
             all_moves = @board[translated_space[0].to_i][translated_space[1].to_i].next_moves
             valid_moves = self.validate_moves(all_moves, type)
             puts "#{valid_moves} are all the valid moves"
-            translated_moves = self.translate_moves(valid_moves)
-            puts "Where would you like to move your #{piece} to? The valid moves are: #{translated_moves}"
+            if valid_moves == []
+                puts "There are no valid moves for your #{piece}!"
+                self.get_space
+            else
+                translated_moves = self.translate_moves(valid_moves)
+                puts "Where would you like to move your #{piece} to? The valid moves are: #{translated_moves}"
+            end
         else
             puts "That is not a valid space!"
             self.get_space
@@ -108,6 +113,10 @@ class Board
         final_moves
     end
 
+    def validate_king(moves)
+        moves.delete_if { |move| self.occupied?(move) }
+    end
+    
     def validate_knight(moves)
         moves.delete_if { |move| self.occupied?(move) }
     end
