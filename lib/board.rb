@@ -121,6 +121,25 @@ class Board
         moves.delete_if { |move| self.occupied?(move) }
     end
 
+    def validate_pawn(moves)
+        final_moves = []
+        moves.each { |move| final_moves << move unless self.occupied?(move) }
+
+        final_moves
+    end
+
+    # def validate_rook(moves)   This logic doesn't work because it removes all moves valid or not.
+    #     final_moves = []
+    #     moves.each do |move|
+    #         if self.occupied?(move)
+    #             final_moves << move
+    #             moves.delete_if { |move1| move1[0] == move[0] }
+    #         end
+    #     end
+
+    #     final_moves.delete_if { |move| self.occupied?(move) }
+    # end
+
     # def valid_move?(moves)
     #     moves.each do |move|
     #         return false if self.occupied?(move)
